@@ -7,6 +7,201 @@
     <title>OSINT БОТЫ</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+/* Специальный бот - плавная и быстрая переливающаяся тема без обрывов */
+.bot-card.special {
+    border: 1px solid #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    background: rgba(255, 0, 0, 0.15);
+    animation: color-flow 2s infinite ease-in-out;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.bot-card.special:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.7);
+}
+
+/* Псевдоэлемент для летающего градиента */
+.bot-card.special::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.2),
+        rgba(0, 255, 0, 0.2),
+        rgba(255, 0, 0, 0.2)
+    );
+    animation: fly-gradient 2.5s infinite ease-in-out;
+    z-index: 0;
+    opacity: 0.6;
+    filter: blur(5px);
+}
+
+
+/* Название */
+.bot-card.special .bot-name {
+    color: #ff0000;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    animation: text-color-flow 2s infinite ease-in-out;
+}
+
+/* Кнопка */
+.bot-card.special .bot-link {
+    border-color: #ff0000;
+    color: #ff0000;
+    animation: link-color-flow 2s infinite ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.bot-card.special .bot-link:hover {
+    background: #00ff00;
+    color: var(--dark-bg);
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+    animation: none;
+}
+
+/* Список функций */
+.bot-card.special .features {
+    border-top: 1px solid rgba(255, 0, 0, 0.3);
+    animation: border-color-flow 2s infinite ease-in-out;
+}
+
+.bot-card.special .feature-item:before {
+    color: #ff0000;
+    animation: feature-color-flow 2s infinite ease-in-out;
+}
+
+/* Анимации с плавным циклом */
+@keyframes color-flow {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        background: rgba(255, 0, 0, 0.15);
+        border-color: #ff0000;
+    }
+    25% {
+        box-shadow: 0 0 25px rgba(128, 255, 0, 0.5);
+        background: rgba(128, 255, 0, 0.15);
+        border-color: #80ff00;
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        background: rgba(0, 255, 0, 0.15);
+        border-color: #00ff00;
+    }
+    75% {
+        box-shadow: 0 0 25px rgba(128, 255, 0, 0.5);
+        background: rgba(128, 255, 0, 0.15);
+        border-color: #80ff00;
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        background: rgba(255, 0, 0, 0.15);
+        border-color: #ff0000;
+    }
+}
+
+@keyframes fly-gradient {
+    0% {
+        transform: translateX(-50%);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes text-color-flow {
+    0% {
+        color: #ff0000;
+        text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    }
+    25% {
+        color: #80ff00;
+        text-shadow: 0 0 8px rgba(128, 255, 0, 0.6);
+    }
+    50% {
+        color: #00ff00;
+        text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+    }
+    75% {
+        color: #80ff00;
+        text-shadow: 0 0 8px rgba(128, 255, 0, 0.6);
+    }
+    100% {
+        color: #ff0000;
+        text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    }
+}
+
+@keyframes link-color-flow {
+    0% {
+        border-color: #ff0000;
+        color: #ff0000;
+    }
+    25% {
+        border-color: #80ff00;
+        color: #80ff00;
+    }
+    50% {
+        border-color: #00ff00;
+        color: #00ff00;
+    }
+    75% {
+        border-color: #80ff00;
+        color: #80ff00;
+    }
+    100% {
+        border-color: #ff0000;
+        color: #ff0000;
+    }
+}
+
+@keyframes border-color-flow {
+    0% {
+        border-color: rgba(255, 0, 0, 0.3);
+    }
+    25% {
+        border-color: rgba(128, 255, 0, 0.3);
+    }
+    50% {
+        border-color: rgba(0, 255, 0, 0.3);
+    }
+    75% {
+        border-color: rgba(128, 255, 0, 0.3);
+    }
+    100% {
+        border-color: rgba(255, 0, 0, 0.3);
+    }
+}
+
+@keyframes feature-color-flow {
+    0% {
+        color: #ff0000;
+    }
+    25% {
+        color: #80ff00;
+    }
+    50% {
+        color: #00ff00;
+    }
+    75% {
+        color: #80ff00;
+    }
+    100% {
+        color: #ff0000;
+    }
+}
+    </style>
+    <style>
         :root {
             --primary-green: #00ff00;
             --secondary-green: #39ff14;
@@ -285,6 +480,16 @@
     <script>
         // Массив с данными ботов
         const bots = [
+         {
+        name: 'ТУТ МОЖЕТ БЫТЬ ВАШ БОТ',
+        description: 'ОПИСАНИЕ ДЛЯ БОТА',
+        link: 'https://t.me/сам-бот',
+        features: [
+            'ЗА РЕКЛАМОЙ ПИШИТЕ: @CEKC_CEKC_CEKC_CEKC_CEKC_CE'
+        ],
+        isActive: true,
+        isSpecial: true // Добавляем это свойство для выделения
+    },
             {
                 name: 'TlgGeoEarthBot',
                 description: '3 запроса каждый день ищет по геолокации как в глазе бога только бесплатно',
@@ -1774,70 +1979,55 @@
                 ],
                 isActive: true
             },
-            {
-                name: 'Check Sender Bot',
-                description: 'фейк криптобот. Можно создавать фейк чеки.',
-                link: 'https://t.me/check_senderbot',
-                features: [
-                    'Бесплатно'
-                ],
-                isActive: true
-            },
-             
-
-
-
 
             // Добавьте новых ботов здесь по такому же формату
         ];
 
         // Функция для создания карточки бота
         function createBotCard(bot) {
-            const card = document.createElement('div');
-            card.className = 'bot-card';
+    const card = document.createElement('div');
+    card.className = `bot-card${bot.isSpecial ? ' special' : ''}`;
 
-            const content = `
-                <h2 class="bot-name">${bot.name}</h2>
-                <p class="bot-description">${bot.description}</p>
-                <div class="features">
-                    ${bot.features.map(feature => `
-                        <div class="feature-item">${feature}</div>
-                    `).join('')}
-                </div>
-                <a href="${bot.link}" target="_blank" class="bot-link" onclick="window.open('${bot.link}', '_blank')">
-                    <i class="fab fa-telegram telegram-icon"></i>
-                    Перейти в бота
-                </a>
-                <div class="status-indicator ${bot.isActive ? 'status-active' : 'status-inactive'}">
-                    ${bot.isActive ? 'Пока ещё жив' : 'Мертвый'}
-                </div>
-            `;
+    const content = `
+        <h2 class="bot-name">${bot.name}</h2>
+        <p class="bot-description">${bot.description}</p>
+        <div class="features">
+            ${bot.features.map(feature => `
+                <div class="feature-item">${feature}</div>
+            `).join('')}
+        </div>
+        <a href="${bot.link}" target="_blank" class="bot-link">
+            <i class="fab fa-telegram telegram-icon"></i>
+            Перейти в бота
+        </a>
+        <div class="status-indicator ${bot.isActive ? 'status-active' : 'status-inactive'}">
+            ${bot.isSpecial && bot.isActive ? 'РЕКЛАМА' : (bot.isActive ? 'Пока ещё жив' : 'Мертвый')}
+        </div>
+    `;
 
-            card.innerHTML = content;
-            return card;
-        }
+    card.innerHTML = content;
+    return card;
+}
         
 
         // Функция для отображения всех ботов
         function displayBots() {
-            const container = document.getElementById('botsContainer');
-            bots.forEach(bot => {
-                container.appendChild(createBotCard(bot));
-            });
-        }
+    const container = document.getElementById('botsContainer');
+    bots.forEach(bot => {
+        container.appendChild(createBotCard(bot));
+    });
+}
 
-        // Вызов функции при загрузке страницы
-        document.addEventListener('DOMContentLoaded', displayBots);
+document.addEventListener('DOMContentLoaded', displayBots);
 
-        // Функция для добавления нового бота (можно использовать в консоли или интегрировать с формой)
-        function addNewBot(name, description, link, features, isActive = true) {
-            const newBot = { name, description, link, features, isActive };
-            bots.push(newBot);
-            const container = document.getElementById('botsContainer');
-            container.appendChild(createBotCard(newBot));
-        }
+function addNewBot(name, description, link, features, isActive = true, isSpecial = false) {
+    const newBot = { name, description, link, features, isActive, isSpecial };
+    bots.push(newBot);
+    const container = document.getElementById('botsContainer');
+    container.appendChild(createBotCard(newBot));
+}
 
-        document.addEventListener('DOMContentLoaded', displayBots);
+document.addEventListener('DOMContentLoaded', displayBots);
     </script>
 </body>
 </html>
